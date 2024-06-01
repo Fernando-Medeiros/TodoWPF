@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TodoWPF.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resource="clr-namespace:TodoWPF.Resource"
     xmlns:vm="clr-namespace:TodoWPF.ViewModel"
     Title="Main"
     d:DesignHeight="450"
@@ -60,7 +61,7 @@
                 <Label.InputBindings>
                     <MouseBinding
                         Command="{Binding NavigationCommand}"
-                        CommandParameter="signup"
+                        CommandParameter="{x:Static resource:Endpoint.SignUp}"
                         MouseAction="LeftClick" />
                 </Label.InputBindings>
             </Label>
@@ -72,7 +73,7 @@
                 <Label.InputBindings>
                     <MouseBinding
                         Command="{Binding NavigationCommand}"
-                        CommandParameter="recover"
+                        CommandParameter="{x:Static resource:Endpoint.Recover}"
                         MouseAction="LeftClick" />
                 </Label.InputBindings>
             </Label>
