@@ -12,6 +12,8 @@ namespace TodoWPF.Service
 
         public static bool Execute(Target target, string input)
         {
+            if (input is null) return false;
+
             switch (target)
             {
                 case Target.Name: return Regex.IsMatch(input, name);
