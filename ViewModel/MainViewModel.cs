@@ -2,12 +2,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using TodoWPF.Resources;
+using TodoWPF.Resource;
 using TodoWPF.Service;
 
 namespace TodoWPF.ViewModel
 {
-    public partial class MainViewModel : BaseViewModel
+    public sealed partial class MainViewModel : BaseViewModel
     {
         public MainViewModel()
         {
@@ -24,9 +24,13 @@ namespace TodoWPF.ViewModel
         #endregion
 
         #region Properties
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        private string name;
+        private string email;
+        private string password;
+
+        public string Name { get => name; set { name = value ?? name; OnPropertyChanged(nameof(Name)); } }
+        public string Email { get => email; set { email = value ?? email; OnPropertyChanged(nameof(Email)); } }
+        public string Password { get => password; set { password = value ?? password; OnPropertyChanged(nameof(Password)); } }
         public bool KeepLoggedIn { get; set; }
         #endregion
 
@@ -42,13 +46,10 @@ namespace TodoWPF.ViewModel
         {
             if (IsBusy()) return;
 
-            switch (sender)
+            if (sender is Endpoint endpoint)
             {
-                case "login": break;
-                case "signup": break;
-                case "recover": break;
+                App.Current.GoTo(endpoint);
             }
-
             NotBusy();
         }
 
@@ -65,8 +66,10 @@ namespace TodoWPF.ViewModel
                 MessageBox.Show("A senha deve conter letras e numeros e o @, por exemplo Senha@@00", "Senha Inválida", MessageBoxButton.OK);
 
             else
+            {
                 MessageBox.Show("Login efetuado, clique em continuar para prosseguir...", "Credenciais", MessageBoxButton.OK);
-
+                App.Current.GoTo(Endpoint.Dashboard);
+            }
             NotBusy();
         }
 
@@ -79,12 +82,17 @@ namespace TodoWPF.ViewModel
             if (string.IsNullOrEmpty(Email))
                 MessageBox.Show("O e-mail deve conter letras e seguir o padrão exemplo@exemplo.com...", "E-mail Inválido", MessageBoxButton.OK);
 
+            else if (string.IsNullOrEmpty(Name))
+                MessageBox.Show("O nome deve conter apenas letras", "Nome Inválido", MessageBoxButton.OK);
+
             else if (string.IsNullOrEmpty(Convert.ToString(Password)))
                 MessageBox.Show("A senha deve conter letras e numeros e o @, por exemplo Senha@@00", "Senha Inválida", MessageBoxButton.OK);
 
             else
+            {
                 MessageBox.Show("Registro efetuado, clique em continuar para prosseguir...", "Credenciais", MessageBoxButton.OK);
-
+                App.Current.GoTo(Endpoint.Login);
+            }
             NotBusy();
         }
 
@@ -96,8 +104,10 @@ namespace TodoWPF.ViewModel
                 MessageBox.Show("O e-mail deve conter letras e seguir o padrão exemplo@exemplo.com...", "E-mail Inválido", MessageBoxButton.OK);
 
             else
+            {
                 MessageBox.Show("E-mail enviado, verifique a caixa de mensagens...", "Credenciais", MessageBoxButton.OK);
-
+                App.Current.GoTo(Endpoint.Login);
+            }
             NotBusy();
         }
         #endregion
