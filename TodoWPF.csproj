@@ -87,6 +87,7 @@
     <Compile Include="Resource\Icon.cs" />
     <Compile Include="Service\BaseCommand.cs" />
     <Compile Include="Service\BaseViewModel.cs" />
+    <Compile Include="Service\Validator.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

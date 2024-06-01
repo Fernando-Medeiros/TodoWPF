@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows;
+using TodoWPF.Model;
 using TodoWPF.Resource;
 using TodoWPF.View;
 using TodoWPF.ViewModel;
@@ -22,11 +23,19 @@ namespace TodoWPF
         public new static App Current => (App)Application.Current;
 
         /// <summary>
+        /// Get the unique Customer reference.
+        /// </summary>
+        public Customer Customer { get; set; }
+
+        /// <summary>
         /// Gets the <see cref="IServiceProvider"/> instance to resolve application services.
         /// </summary>
         /// 
         public IServiceProvider Services { get; }
 
+        /// <summary>
+        ///  Takes the section of the main window (#Main) to display the current page.
+        /// </summary>
         private MainWindow ThisMainWindow => (MainWindow)Application.Current.MainWindow;
 
         /// <summary>
