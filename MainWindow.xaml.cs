@@ -1,14 +1,15 @@
 ﻿using System.Windows;
+using TodoWPF.View;
 
 namespace TodoWPF
 {
-    /// <summary>
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            Main.Content = new MainView();
         }
     }
 }

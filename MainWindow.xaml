@@ -8,6 +8,11 @@
     Title="MainWindow"
     Width="800"
     Height="450"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid />
+
+    <StackPanel VerticalAlignment="Center">
+        <Frame x:Name="Main" NavigationUIVisibility="Hidden" />
+
+    </StackPanel>
 </Window>
