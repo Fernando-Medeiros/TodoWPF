@@ -1,15 +1,15 @@
 ﻿using System.Windows;
-using TodoWPF.View;
+using TodoWPF.Resource;
 
 namespace TodoWPF
 {
-    public partial class MainWindow : Window
+    public sealed partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
 
-            Main.Content = new MainView();
+            App.Current.GoTo(Endpoint.Login);
         }
     }
 }
